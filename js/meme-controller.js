@@ -7,7 +7,6 @@ var gFontFamily;
 var gFontSize;
 var gCurrImg;
 var gTopLineLocation = 60;
-var g2ndLineLocation = 450;
 var gTextAlign = 'left';
 var isEditing = false;
 
@@ -33,13 +32,40 @@ function onRenderLines() {
 function onRenderText() {
     var memeData = getMemeData();
     onRenderCanvas(gCurrImg);
+    console.log('2 lines test: ', memeData);
+    var idx = memeData.selectedLineIdx;
+    var lines = memeData.lines;
+    // lines.forEach(line => {
+    //     var text = document.querySelector('.text-input').value;
+    //     if (!text) text = memeData.lines[idx].txt;
+    //     memeData.lines.txt = text;
+    //     if (!gFontSize) gFontSize = memeData.lines[idx].size;
+    //     memeData.lines[idx].size = gFontSize;
+    //     gCtx.font = `${gFontSize}px ${gFontFamily}`
+    //     gCtx.strokeStyle = memeData.lines[idx].color;
+    //     if (gTextAlign === 'center') {
+    //         gCtx.textAlign = 'center';
+    //         gCtx.strokeText(text, 250, memeData.lines[idx].positionX);
+    //     } else if (gTextAlign === 'right') {
+    //         gCtx.textAlign = 'right';
+    //         gCtx.strokeText(text, 480, memeData.lines[idx].positionX);
+    //     } else {
+    //         gCtx.textAlign = 'left';
+    //         gCtx.strokeText(text, 60, memeData.lines[idx].positionX);
+    //     }
+    //     idx ++;
+    //     gCtx.fillStyle = gFill;
+    //     gCtx.fill()
+    // }
+    // )
+
     var text = document.querySelector('.text-input').value;
-    if (!text) text = memeData.lines['0'].txt;
-    memeData.lines['0'].txt = text;
-    if (!gFontSize) gFontSize = memeData.lines['0'].size;
-    memeData.lines['0'].size = gFontSize;
+    if (!text) text = memeData.lines[idx].txt;
+    memeData.lines[idx].txt = text;
+    if (!gFontSize) gFontSize = memeData.lines[idx].size;
+    memeData.lines[idx].size = gFontSize;
     gCtx.font = `${gFontSize}px ${gFontFamily}`
-    gCtx.strokeStyle = memeData.lines['0'].color;
+    gCtx.strokeStyle = memeData.lines[idx].color;
     if (gTextAlign === 'center') {
         gCtx.textAlign = 'center';
         gCtx.strokeText(text, 250, gTopLineLocation);
@@ -55,10 +81,10 @@ function onRenderText() {
 }
 
 function onLineMove(diff) {
+    var memeData = getMemeData();
     var lineDirection = diff.classList.value;
     gTopLineLocation += (lineDirection === 'up') ? -2 : 2;
     onRenderText();
-
 }
 
 function onTxtSize(diff) {

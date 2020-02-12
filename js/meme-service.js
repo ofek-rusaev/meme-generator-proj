@@ -12,15 +12,23 @@ var gMeme = {
         size: 30,
         align: 'left',
         color: 'black',
-        fillColor: ''
-    },{
+        fillColor: 'black',
+        positionX: 60
+    }, {
         txt: 'I LOVE Falafel',
         size: 30,
         align: 'left',
         color: 'black',
-        fillColor: ''
+        fillColor: 'black',
+        positionX: 450
     }]
 }
+
+// function updateMemeData(dataKey, memeID, value) {
+//     var data = dataKey;
+//     gMeme[memeID].data = value;
+//     console.log('updating gmeme', value);
+// }
 
 function saveMeme() {
     gMemes.push(gMeme);
