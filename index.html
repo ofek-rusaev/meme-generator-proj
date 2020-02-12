@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Meme Generator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="onInit()">
+
+    <nav class="main-nav flex space-between align-center">
+        <img class="logo" src="img/LOGO.png" alt="Logo">
+        <ul class="main-nav-list flex space-between align-center clean-list">
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Memes</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="search-bar"></div>
+    <div class="images-container"></div>
+
+
+    <section class="hide">
+        <!-- add hidden -->
+
+
+        <div class="canvas-container flex">
+            <canvas id="my-canvas" height="500" width="500" style="border: 1px solid rgb(105, 2, 2);"></canvas>
+            <div class="editor">
+                <div class="text-controller flex">
+                    <input class="text-input" type="text" onkeydown="onRenderText()">
+                    <button class="text-up"><img class="up" onclick="onLineMove(this)" src="img/icons/up.png"
+                            alt=""></button>
+                    <button class="text-down"><img class="down" onclick="onLineMove(this)" src="img/icons/down.png"
+                            alt=""></button>
+                    <button class="text-switch"><img src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png"
+                            alt=""></button>
+                    <button class="text-add"><img src="img/icons/add.png" alt=""></button>
+                    <button class="clear" onclick="onClearCanvas()"><img src="img/icons/trash.png" alt=""></button>
+                </div>
+                <div class="font-style flex column">
+                    <div class="font-editor-part1">
+                        <button><img class="increase" src="img/icons/increase font - icon.png" alt=""
+                                onclick="onTxtSize(this)"></button>
+                        <button><img class="decrease" src="img/icons/decrease font - icon.png" alt=""
+                                onclick="onTxtSize(this)"></button>
+                        <button><img class="left" src="img/icons/align-to-left.png" alt=""
+                                onclick="onTxtAlign(this)"></button>
+                        <button><img class="center" src="img/icons/center-text-alignment.png" alt=""
+                                onclick="onTxtAlign(this)"></button>
+                        <button><img class="right" src="img/icons/align-to-right.png" alt=""
+                                onclick="onTxtAlign(this)"></button>
+                    </div>
+                    <div class="font-editor-part2">
+                        <select class="fontOptions" onchange="onSetFont(value)" title="Choose Font">
+                            <option> </option>
+                            <option data-font="monospace">Monospace</option>
+                            <option data-font="Times New Roman', Times, serif">Times New Roman</option>
+                            <option data-font="impact">Impact</option>
+                            <option data-font="Arial, Helvetica, sans-serif">Arial</option>
+                        </select>
+                        <button class="color"><img src="img/icons/text stroke.png" alt=""><input type="color"
+                                onchange="onSetStrokeStyle(value)" id="color" /></button>
+                        <button class="color"><img src="img/icons/paint-board-and-brush.png" alt=""><input type="color"
+                                onchange="onSetFillStyle(value)" id="bg-color" /></button>
+                        <button class="save" onclick="onSave()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/storage-service.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/main-controller.js"></script>
+    <script src="js/meme-controller.js"></script>
+</body>
+
+</html>
