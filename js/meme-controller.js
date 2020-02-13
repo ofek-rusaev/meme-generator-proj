@@ -6,12 +6,46 @@ var gCurrImg;
 var gLineIdx;
 var gFontFamily;
 var gFontSize;
-var gTopLineLocation = 60;
 var gTextAlign = 'left';
 var isEditing = false;
 
 var gStrokeColor;
 var gFillColor;
+
+var gIsDraging = false;
+var gIsStopDraging = true;
+
+var gPrevX;
+var gPrevY;
+
+
+function onNewEvent(ev) {
+    // console.log(ev)
+    gIsDraging = !gIsDraging;
+    gPrevX = undefined;
+    gPrevY = undefined;
+}
+
+function onDrawing(ev) {
+    // console.log('ev: ', ev);
+    var offsetX;
+    var offsetY;
+    if (gIsDraging) {
+        if (ev.type === 'touchmove') {
+            ev.preventDefault()
+            offsetX = ev.changedTouches['0'].pageX;
+            offsetY = ev.changedTouches['0'].pageY;
+        } else {
+            offsetX = ev.offsetX;
+            offsetY = ev.offsetY;
+            console.log('offsetX, offsetY', offsetX, offsetY);
+        }
+    }
+    let lineIdx = (offsetY < 300) ? 0 : 1;
+    onTypeText();
+    setPoseX(lineIdx, offsetX);
+    setPoseY(lineIdx, offsetY);
+}
 
 function onRenderCanvas(img) {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
