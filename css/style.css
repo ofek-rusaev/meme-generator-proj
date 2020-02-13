@@ -109,3 +109,30 @@ button input {
     margin: 0;
     padding: 0;
 }
+
+/* Media Queries */
+@media (max-width: 1030px) {
+    .text-controller {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 850px) {
+    .canvas-container {
+        flex-direction: column-reverse;
+    }
+
+    .main-nav {
+    padding: 0px 20px;
+    height: 60px;
+    /* margin-bottom: 10px; */
+    }
+} 
+
+@media (max-width: 550px) {
+    .text-input {
+        height: 20px;
+        width: 200px;
+    }
+}

@@ -1,6 +1,5 @@
 'use strict';
 
-
 function onInit() {
     gCanvas = document.getElementById('my-canvas');
     gCtx = gCanvas.getContext('2d');
