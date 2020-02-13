@@ -19,6 +19,7 @@ a:hover {
 }
 
 /* Nav bar*/
+
 .main-nav {
     background-color: #fff;
     background: linear-gradient(to right, #fad178, #f7a456, #fc7f2c, #f83b0b);
@@ -39,6 +40,7 @@ a:hover {
 }
 
 /* Search Bar */
+
 .search-bar {
     margin-bottom: 10px;
 }
@@ -59,7 +61,8 @@ a:hover {
 }
 
 /* Canvas */
-.canvas-container{
+
+.canvas-container {
     /* display: none; */
     position: absolute;
     z-index: 2;
@@ -73,19 +76,23 @@ a:hover {
     margin: 20px;
     line-height: 50px;
 }
+
 .editor img {
     height: 20px;
     width: 20px;
 }
+
 button input {
     border: none;
     height: 20px;
     width: 20px;
 }
+
 .text-input {
     height: 30px;
     width: 300px;
 }
+
 /* Helpers */
 
 .flex {
@@ -111,6 +118,7 @@ button input {
 }
 
 /* Media Queries */
+
 @media (max-width: 1030px) {
     .text-controller {
         flex-wrap: wrap;
@@ -122,17 +130,31 @@ button input {
     .canvas-container {
         flex-direction: column-reverse;
     }
-
     .main-nav {
-    padding: 0px 20px;
-    height: 60px;
-    /* margin-bottom: 10px; */
+        padding: 0px 20px;
+        height: 60px;
+        /* margin-bottom: 10px; */
     }
-} 
+}
 
 @media (max-width: 550px) {
     .text-input {
         height: 20px;
         width: 200px;
+    }
+    /* .font-style {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        border: slategray 1px solid;
+        gap: 2px;
+        width: 85vw;
+    } */
+    .text-controller {
+        justify-content: center;
+        padding: 2px;
+    }
+    .editor, .font-editor-part2 {
+        padding: 2px;
+        line-height: 10px
     }
 }

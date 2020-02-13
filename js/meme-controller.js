@@ -42,44 +42,39 @@ function onTypeText() {
     var memeData = getMemeData();
     gLineIdx = memeData.selectedLineIdx;
     var text = document.querySelector('.text-input').value;
-    if (!text) text = getText(gLineIdx, text);
+    if (!text) text = getText(gLineIdx);
     setText(gLineIdx, text);
     gFontSize = getFontSize(gLineIdx);
-    // gCtx.fillStyle = memeData.lines[gLineIdx].fillColor;
     renderText();
 }
 
-function onLineMove(diff) {
-    var lineDirection = diff.classList.value;
-    gTopLineLocation += (lineDirection === 'up') ? -2 : 2;
-    var memeData = getMemeData();
-    var memeLineId = memeData.selectedLineIdx;
-    setPositionY(memeLineId, gTopLineLocation);
+function onAddLine() {
+    addLine();
+}
+
+function onLineSwitch() {
+    gLineIdx += (gLineIdx) ? -1 : 1;
+    updateLineIdx(gLineIdx);
+    document.querySelector('.text-input').value = getText(gLineIdx);
     renderText();
 }
 
 function onTxtSize(diff) {
     var sizeChanger = diff.classList.value;
     gFontSize += (sizeChanger === 'increase') ? 2 : -2;
-    var memeData = getMemeData();
-    var memeLineId = memeData.selectedLineIdx;
-    setFontSize(memeLineId, gFontSize);
+    setFontSize(gLineIdx, gFontSize);
     renderText();
 }
 
 function onSetStrokeStyle(color) {
-    var memeData = getMemeData();
-    var memeLineId = memeData.selectedLineIdx;
     gStrokeColor = color;
-    setStrokeStyle(memeLineId, gStrokeColor);
+    setStrokeStyle(gLineIdx, gStrokeColor);
     renderText();
 }
 
 function onSetFillStyle(color) {
-    var memeData = getMemeData();
-    var memeLineId = memeData.selectedLineIdx;
     gFillColor = color;
-    setFillStyle(memeLineId, gFillColor)
+    setFillStyle(gLineIdx, gFillColor)
     renderText();
 }
 
@@ -104,15 +99,21 @@ function onSetFont(font) {
     }
 }
 
+function onLineMove(diff) {
+    var lineDirection = diff.classList.value;
+    var y = getPoseY(gLineIdx);
+    y += (lineDirection === 'up') ? -2 : 2;
+    setPoseY(gLineIdx, y);
+    renderText();
+}
+
 function onTxtAlign(value) {
-    var memeData = getMemeData();
-    var memeLineId = memeData.selectedLineIdx;
     var positionX;
     gTextAlign = value.classList.value;
     if (gTextAlign === 'center') positionX = 250;
     else if (gTextAlign === 'right') positionX = 480;
     else positionX = 60;
-    setAlignData(memeLineId, gTextAlign);
-    setPositionX(memeLineId, positionX);
+    setAlignData(gLineIdx, gTextAlign);
+    setPositionX(gLineIdx, positionX);
     renderText();
 }
