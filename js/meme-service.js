@@ -2,7 +2,7 @@
 
 var gKeywords = { 'happy': 12, 'funny': 1 }
 const KEY = 'Memes';
-var gMemes = [];
+var gMemes = getMemes();
 
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['orange'] },
@@ -48,9 +48,9 @@ function addLine() {
         positionY: 450
     }
     console.log('adding line...');
-    
     gMeme.lines.push(newLine);
 }
+
 function getPoseY(idx) {
     return gMeme.lines[idx].positionY;
 }
@@ -63,13 +63,8 @@ function updateLineIdx(idx) {
     gMeme.selectedLineIdx = idx;
 }
 
-function setPositionY(lineId, value) {
-    gMeme.lines[lineId].positionY = value;
-}
-
-function setPositionX(lineId, value) {
+function setPoseX(lineId, value) {
     gMeme.lines[lineId].positionX = value;
-
 }
 
 function setFillStyle(lineId, value) {
@@ -78,10 +73,6 @@ function setFillStyle(lineId, value) {
 
 function setAlignData(lineId, value) {
     gMeme.lines[lineId].align = value;
-}
-
-function setPositionY(lineId, value) {
-    gMeme.lines[lineId].positionY = value;
 }
 
 function setFontSize(lineId, value) {
@@ -108,9 +99,15 @@ function setText(line, text) {
     gMeme.lines[line].txt = text;
 }
 
-function saveMeme() {
-    gMemes.push(gMeme);
+function saveMeme(imgData) {
+    gMemes.push(imgData);
     saveToStorage(KEY, gMemes);
+}
+
+function getMemes() {
+    var memes = loadFromStorage(KEY);
+    if (!memes) memes = [];
+    return memes;
 }
 
 function imgsForDisplay() {

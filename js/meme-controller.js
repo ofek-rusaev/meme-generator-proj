@@ -20,7 +20,11 @@ function onRenderCanvas(img) {
 
 function onClearCanvas() {
     let isSure = confirm('Are you sure?');
-    if (isSure) gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    if (isSure) {
+        gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+        document.querySelector('.hide-canvas').hidden = true;
+        document.querySelector('.images-container').style.display = 'grid';
+    }
 }
 
 
@@ -114,6 +118,6 @@ function onTxtAlign(value) {
     else if (gTextAlign === 'right') positionX = 480;
     else positionX = 60;
     setAlignData(gLineIdx, gTextAlign);
-    setPositionX(gLineIdx, positionX);
+    setPoseX(gLineIdx, positionX);
     renderText();
 }

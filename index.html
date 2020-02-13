@@ -11,37 +11,41 @@
 <body onload="onInit()">
     <div class="screen" onclick="onToggleMenu()"></div>
 
-    <nav class="main-nav  container flex space-between align-center">
-        <img class="logo" src="img/LOGO.png" alt="Logo">
-        <ul class="main-nav-list flex space-between align-center clean-list">
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Memes</a></li>
-            <li><a href="#">About</a></li>
-        </ul>
-        <button class="menu-btn" onclick="onToggleMenu()">☰</button>
-    </nav>
+    <div class="main-nav">
+        <nav class="main-nav-container  container  flex space-between align-center">
+
+            <img class="logo" src="img/LOGO.png" alt="Logo">
+            <ul class="main-nav-list flex space-between align-center clean-list">
+                <li><a href="#" onclick="onShowGallery()">Gallery</a></li>
+                <li><a href="#" onclick="onShowMemes()">Memes</a>
+                </li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <button class="menu-btn" onclick="onToggleMenu()">☰</button>
+        </nav>
+    </div>
 
     <div class="search-bar"></div>
-    <div class="images-container container "></div>
+    <div class="memes-container container"></div>
+    <div class="images-container container"></div>
 
-
-    <section class="hide" hidden>
+    <section class="hide-canvas" hidden>
 
         <div class="canvas-container container flex">
             <canvas id="my-canvas" height="500" width="500" style="border: 1px solid rgb(105, 2, 2);"></canvas>
             <div class="editor">
-                <div class="text-controller flex">
-                    <input class="text-input" type="text" onkeydown="onTypeText()">
-                    <button class="up" onclick="onLineMove(this)"><img class="up" src="img/icons/up.png"
-                            alt=""></button>
-                    <button class="down" onclick="onLineMove(this)"><img class="down" src="img/icons/down.png"
-                            alt=""></button>
-                    <button class="text-switch" onclick="onLineSwitch()"><img
-                            src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
-                    <button class="add" onclick="onAddLine()"><img src="img/icons/add.png" alt=""></button>
-                    <button class="clear" onclick="onClearCanvas()"><img src="img/icons/trash.png" alt=""></button>
-                </div>
+                <input class="text-input" type="text" onkeyup="onTypeText()">
                 <div class="font-style flex column">
+                    <div class="text-controller">
+                        <button class="up" onclick="onLineMove(this)"><img class="up" src="img/icons/up.png"
+                                alt=""></button>
+                        <button class="down" onclick="onLineMove(this)"><img class="down" src="img/icons/down.png"
+                                alt=""></button>
+                        <button class="text-switch" onclick="onLineSwitch()"><img
+                                src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
+                        <button class="add" onclick="onAddLine()"><img src="img/icons/add.png" alt=""></button>
+                        <button class="clear" onclick="onClearCanvas()"><img src="img/icons/trash.png" alt=""></button>
+                    </div>
                     <div class="font-editor-part1">
                         <button class="increase" onclick="onTxtSize(this)"><img src="img/icons/increase font - icon.png"
                                 alt=""></button>
@@ -53,6 +57,10 @@
                                 alt=""></button>
                         <button class="right" onclick="onTxtAlign(this)"><img src="img/icons/align-to-right.png"
                                 alt=""></button>
+                        <button class="color"><img src="img/icons/text stroke.png" alt=""><input type="color"
+                                onchange="onSetStrokeStyle(value)" id="color" /></button>
+                        <button class="color"><img src="img/icons/paint-board-and-brush.png" alt=""><input type="color"
+                                onchange="onSetFillStyle(value)" id="bg-color" /></button>
                     </div>
                     <div class="font-editor-part2">
                         <select class="fontOptions" onchange="onSetFont(value)" title="Choose Font">
@@ -62,10 +70,6 @@
                             <option data-font="impact">Impact</option>
                             <option data-font="Arial, Helvetica, sans-serif">Arial</option>
                         </select>
-                        <button class="color"><img src="img/icons/text stroke.png" alt=""><input type="color"
-                                onchange="onSetStrokeStyle(value)" id="color" /></button>
-                        <button class="color"><img src="img/icons/paint-board-and-brush.png" alt=""><input type="color"
-                                onchange="onSetFillStyle(value)" id="bg-color" /></button>
                         <button class="save" onclick="onSave()">Save</button>
                     </div>
                 </div>
