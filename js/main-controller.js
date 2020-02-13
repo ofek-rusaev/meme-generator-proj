@@ -30,3 +30,8 @@ function onSave() {
     document.querySelector('.images-container').style.display = 'grid';
     saveMeme();
 }
+
+
+function onToggleMenu() {
+    document.body.classList.toggle('menu-open');
+}
