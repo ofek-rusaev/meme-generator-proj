@@ -16,17 +16,21 @@
 
             <img class="logo" src="img/LOGO.png" alt="Logo">
             <ul class="main-nav-list flex space-between align-center clean-list">
-                <li><a href="#" onclick="onShowGallery()">Gallery</a></li>
-                <li><a href="#" onclick="onShowMemes()">Memes</a>
+                <li><a href="#" onclick="onShowGallery()" data-trans="gallery">Gallery</a></li>
+                <li><a href="#" onclick="onShowMemes()" data-trans="memes">Memes</a>
                 </li>
-                <li><a href="#">About</a></li>
+                <li><a href="#" data-trans="about">About</a></li>
             </ul>
             <button class="menu-btn" onclick="onToggleMenu()">☰</button>
         </nav>
     </div>
 
-    <div class="search-bar">
-        <input class="search-input" type="text" placeholder="Search..." onkeyup="onSearch()"/>
+    <div class="search-bar container">
+        <select onchange="onSetLang(this.value)">
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+        </select>
+        <input class="search-input" type="text" placeholder="Search..." data-trans="search" onkeyup="onSearch()"/>
     </div>
     <div class="memes-container container"></div>
     <div class="images-container container"></div>
@@ -38,7 +42,7 @@
 
             <canvas id="my-canvas" height="500" width="500" style="border: 1px solid rgb(105, 2, 2);"></canvas>
             <div class="editor">
-                <input class="text-input" type="text" onkeyup="onTypeText()">
+                <input class="text-input" type="text" value="" onkeyup="onTypeText()">
                 <div class="font-style flex column">
                     <div class="text-controller">
                         <button class="up" onclick="onLineMove(this)"><img class="up" src="img/icons/up.png"
@@ -65,15 +69,16 @@
                                 onchange="onSetStrokeStyle(value)" id="color" /></button>
                         <button class="color"><img src="img/icons/paint-board-and-brush.png" alt=""><input type="color"
                                 onchange="onSetFillStyle(value)" id="bg-color" /></button>
-                        <button class="user-pics upload">
+                        <!-- <button class="user-pics upload"> -->
                             <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-                            Upload</button>
+                            <!-- Upload</button> -->
                         <form action="" method="POST" enctype="multipart/form-data" onsubmit="onShare(this, event)">
                             <input name="img" id="imgData" type="hidden" />
-                            <button class="user-pics share" type="submit">Publish</button>
+                            <button class="user-pics" type="submit" data-trans="publish">Publish</button>
                             <div class="share-container"></div>
+                            <button class="share" hidden></button>
                         </form>
-
+                        <!-- <button id="emoji-button"><img src="images/Layer.png" alt="">😀🤪🤩🤡</button> -->
                     </div>
                     <div class="font-editor-part2">
                         <select class="fontOptions" onchange="onSetFont(value)" title="Choose Font">
@@ -83,13 +88,20 @@
                             <option data-font="impact">Impact</option>
                             <option data-font="Arial, Helvetica, sans-serif">Arial</option>
                         </select>
-                        <button class="save" onclick="onSave()">Save</button>
+                        <button class="save" onclick="onSave()" data-trans="save">Save</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <footer data-trans="footer">
+        © 2020 - All Rights Reserved
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/emoji-button@latest/dist/index.min.js"></script>
     <script src="js/storage-service.js"></script>
+    <script src="js/i18n-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/main-controller.js"></script>
     <script src="js/meme-controller.js"></script>

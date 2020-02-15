@@ -39,7 +39,6 @@ function onDrawing(ev) {
         } else {
             offsetX = ev.offsetX;
             offsetY = ev.offsetY;
-            console.log('offsetX, offsetY', offsetX, offsetY);
         }
     }
     let lineIdx = (offsetY < 300) ? 0 : 1;
@@ -47,6 +46,21 @@ function onDrawing(ev) {
     setPoseY(lineIdx, offsetY);
     renderText();
 }
+
+
+// window.addEventListener('DOMContentLoaded', () => {
+//     const button = document.querySelector('#emoji-button');
+//     const picker = new EmojiButton();
+//     picker.on('emoji', emoji => {
+//         document.querySelector('.text-input').value += emoji;
+//         // renderText();
+//         onTypeText();
+//         // onRenderCanvas(gCurrImg);
+//     });
+//     button.addEventListener('click', () => {
+//         picker.pickerVisible ? picker.hidePicker() : picker.showPicker(button);
+//     });
+// });
 
 function getTouchPos(event) {
     var rect = gCanvas.getBoundingClientRect();
@@ -62,17 +76,15 @@ function onRenderCanvas(img) {
 }
 
 function onClearCanvas() {
-    let isSure = confirm('Are you sure?');
-    if (isSure) {
-        gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-        document.querySelector('.hide-canvas').hidden = true;
-        document.querySelector('.images-container').style.display = 'grid';
-    }
+    var memeData = getMemeData();
+    updateLineIdx(memeData.selectedLineIdx);
+    setText(memeData.selectedLineIdx, '');
+    renderText();
 }
 
 
 function renderText() {
-    onRenderCanvas(gCurrImg);
+    onRenderCanvas(gCurrImg); 
     var lines = getLines();
     lines.forEach(line => {
         // gCtx.lineWidth = 2;

@@ -12,11 +12,25 @@ function onInit() {
     gCanvas.addEventListener("touchstart", onNewEvent);
     gCanvas.addEventListener("touchend", onNewEvent);
     gCanvas.addEventListener("touchmove", onDrawing);
+    doTrans();
+}
+
+function onSetLang(lang) {
+    setLang(lang);
+    // TODO: if lang is hebrew add RTL class
+    if (lang === 'he') {
+        document.body.classList.add('rtl');
+    } else {
+        document.body.classList.remove('rtl');
+    }
+
+    doTrans();
+    // renderBooks();
 }
 
 function onRenderImgs() {
     let imgs = imgsForDisplay();
-    console.log(imgs);
+    // console.log(imgs);
     let elImgContainer = document.querySelector('.images-container');
     let strHTML = '';
     imgs.forEach(img => {
@@ -24,6 +38,7 @@ function onRenderImgs() {
     });
     elImgContainer.innerHTML = strHTML;
 }
+
 
 function onSearch() {
     // var imgs = imgsForDisplay();
@@ -71,8 +86,9 @@ function onShare(elForm, ev) {
     // A function to be called if request succeeds
     function onSuccess(uploadedImgUrl) {
         uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-        document.querySelector('.share-container').innerHTML = `
-        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+        document.querySelector('.share').hidden = false;
+        document.querySelector('.share').innerHTML = `
+        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" data-trans="share" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
            Share   
         </a>`
     }
