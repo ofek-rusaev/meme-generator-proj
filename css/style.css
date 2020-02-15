@@ -80,6 +80,12 @@ button {
     border-bottom: 1px solid #292929;
 }
 
+.search-btn {
+    border: none;
+    background-color: #dbd8d8;
+    cursor: pointer;
+}
+
 /* Images layout */
 
 .images-container, .memes-container {
@@ -231,7 +237,10 @@ footer {
         min-width: 120px;
         transform: translate(0, -250%);
         transition: transform .8s, box-shadow .3s;
-        padding: 20px 0 ;
+        padding: 10px 0;
+    }
+    a {
+        padding: 5px 2px;
     }
     .menu-open .main-nav-list {
         transform: translate(0, 0);

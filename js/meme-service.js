@@ -4,6 +4,7 @@ var gKeywords = { 'happy': 12, 'funny': 1 }
 const KEY = 'Memes';
 var gMemes = getMemes();
 var gCurrFilterWord;
+// var gKeys = setFilterIcons();
 
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['orange', 'funny'] },
@@ -50,6 +51,10 @@ function addLine() {
     }
     console.log('adding line...');
     gMeme.lines.push(newLine);
+}
+
+function getKeysForSearch() {
+    return gKeys;
 }
 
 function getPoseY(idx) {
@@ -111,7 +116,7 @@ function getMemes() {
     return memes;
 }
 
-function imgsForDisplay() {
+function getImgsForDisplay() {
     if (!gCurrFilterWord) return gImgs;
     var filteredImgs = gImgs.filter(img => {
         if (img.keywords.includes(gCurrFilterWord)) {
@@ -121,9 +126,41 @@ function imgsForDisplay() {
     return filteredImgs;
 }
 
-function updateSearchWord(text) {
+// var keys = getKeywords();
 
+// function onlyUnique(value, index, self) {
+//     return self.indexOf(value) === index;
+// }
+
+// function getKeywords() {
+//     var wordkeys = gImgs.map(img => {
+//         var keys = img.keywords;
+//         return [...keys];
+//     })
+
+//     var uniqueKeys = wordkeys;
+//     // var uniqueKeys = keys.filter(onlyUnique);
+//     console.log('in unique :', uniqueKeys);
+
+// }
+function setFilterIcons() {
+    var arr = []
+    for (var i = 0; i < gImgs.length; i++) {
+        arr.push(...gImgs[i].keywords)
+    }
+    var filteredArray = arr.filter(function(item, pos) {
+        return arr.indexOf(item) == pos;
+    });
+    return filteredArray;
+}
+
+
+function updateSearchWord(text) {
     gCurrFilterWord = text;
+}
+
+function resetSearchWord() {
+    gCurrFilterWord = '';
 }
 
 function getMemeData() {

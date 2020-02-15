@@ -13,6 +13,18 @@ function onInit() {
     gCanvas.addEventListener("touchend", onNewEvent);
     gCanvas.addEventListener("touchmove", onDrawing);
     doTrans();
+    onRenderSearchBtns();
+}
+
+function onRenderSearchBtns() {
+    var keys = setFilterIcons();
+    let elSearchBtns = document.querySelector('.search-btn');
+    let strHTMLs = '';
+    keys.forEach(key => {
+        let keyName = key.charAt(0).toUpperCase() + key.slice(1)
+        strHTMLs += `<button class="search-btn" onclick="onSearchKeys(this)">${keyName}</button>`
+    });
+    elSearchBtns.innerHTML = strHTMLs;
 }
 
 function onSetLang(lang) {
@@ -29,27 +41,26 @@ function onSetLang(lang) {
 }
 
 function onRenderImgs() {
-    let imgs = imgsForDisplay();
+    let imgs = getImgsForDisplay();
     // console.log(imgs);
     let elImgContainer = document.querySelector('.images-container');
-    let strHTML = '';
+    let strHTMLs = '';
     imgs.forEach(img => {
-        strHTML += `<img data-id="${img.id}" src="${img.url}" alt="" onclick="onSetImgMeme(this)">`;
+        strHTMLs += `<img data-id="${img.id}" src="${img.url}" alt="" onclick="onSetImgMeme(this)">`;
     });
-    elImgContainer.innerHTML = strHTML;
+    elImgContainer.innerHTML = strHTMLs;
 }
 
 
 function onSearch() {
-    // var imgs = imgsForDisplay();
     var text = document.querySelector('.search-input').value;
-    // imgs.filter(img => {
-    //     if (img.keywords.includes(text)) {
-    //         console.log(img.keywords);
-    //         updateSearchWord(text);
-    //     }
-    // });
     updateSearchWord(text);
+    onRenderImgs();
+}
+
+function onSearchKeys(el) {
+    var txt = el.innerText.toLowerCase();
+    updateSearchWord(txt);
     onRenderImgs();
 }
 
@@ -121,6 +132,8 @@ function onSave() {
 }
 
 function onShowGallery() {
+    resetSearchWord();
+    onRenderImgs();
     document.querySelector('.images-container').style.display = 'grid';
     document.querySelector('.memes-container').style.display = 'none';
     document.querySelector('.hide-canvas').hidden = true;
@@ -138,7 +151,6 @@ function onRenderMemes() {
     let elMemeContainer = document.querySelector('.memes-container');
 
     let strHTML = '';
-    console.log('memes saved and loaded : ', memes);
     memes.forEach(meme => {
         strHTML += `<img data-id="" src="${meme}" alt="" onclick="onSetImgMeme(this)">`;
     })

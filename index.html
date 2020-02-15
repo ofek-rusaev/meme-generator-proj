@@ -9,7 +9,7 @@
 </head>
 
 <body onload="onInit()">
-    <div class="screen" onclick="onToggleMenu()"></div>
+    <!-- <div class="screen" onclick="onToggleMenu()"></div> -->
 
     <div class="main-nav">
         <nav class="main-nav-container  container  flex space-between align-center">
@@ -30,7 +30,10 @@
             <option value="en">English</option>
             <option value="he">עברית</option>
         </select>
-        <input class="search-input" type="text" placeholder="Search..." data-trans="search" onkeyup="onSearch()"/>
+        <input class="search-input" type="text" placeholder="Search..." data-trans="search" onkeyup="onSearch()" />
+        <section class="search-btn"></section>
+        <!-- <button class="search-btn" onclick="onSearchKeys(this)">Cute</button>
+        <button class="search-btn" onclick="onSearchKeys(this)">Baby</button> -->
     </div>
     <div class="memes-container container"></div>
     <div class="images-container container"></div>
@@ -70,8 +73,8 @@
                         <button class="color"><img src="img/icons/paint-board-and-brush.png" alt=""><input type="color"
                                 onchange="onSetFillStyle(value)" id="bg-color" /></button>
                         <!-- <button class="user-pics upload"> -->
-                            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-                            <!-- Upload</button> -->
+                        <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+                        <!-- Upload</button> -->
                         <form action="" method="POST" enctype="multipart/form-data" onsubmit="onShare(this, event)">
                             <input name="img" id="imgData" type="hidden" />
                             <button class="user-pics" type="submit" data-trans="publish">Publish</button>
