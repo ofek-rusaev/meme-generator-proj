@@ -25,13 +25,17 @@
         </nav>
     </div>
 
-    <div class="search-bar"></div>
+    <div class="search-bar">
+        <input class="search-input" type="text" placeholder="Search..." onkeyup="onSearch()"/>
+    </div>
     <div class="memes-container container"></div>
     <div class="images-container container"></div>
 
     <section class="hide-canvas" hidden>
 
         <div class="canvas-container container flex">
+            <div class="share-container"></div>
+
             <canvas id="my-canvas" height="500" width="500" style="border: 1px solid rgb(105, 2, 2);"></canvas>
             <div class="editor">
                 <input class="text-input" type="text" onkeyup="onTypeText()">
@@ -61,6 +65,15 @@
                                 onchange="onSetStrokeStyle(value)" id="color" /></button>
                         <button class="color"><img src="img/icons/paint-board-and-brush.png" alt=""><input type="color"
                                 onchange="onSetFillStyle(value)" id="bg-color" /></button>
+                        <button class="user-pics upload">
+                            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+                            Upload</button>
+                        <form action="" method="POST" enctype="multipart/form-data" onsubmit="onShare(this, event)">
+                            <input name="img" id="imgData" type="hidden" />
+                            <button class="user-pics share" type="submit">Publish</button>
+                            <div class="share-container"></div>
+                        </form>
+
                     </div>
                     <div class="font-editor-part2">
                         <select class="fontOptions" onchange="onSetFont(value)" title="Choose Font">

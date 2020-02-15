@@ -33,8 +33,9 @@ function onDrawing(ev) {
     if (gIsDraging) {
         if (ev.type === 'touchmove') {
             ev.preventDefault()
-            offsetX = ev.changedTouches['0'].pageX;
-            offsetY = ev.changedTouches['0'].pageY;
+            var position = getTouchPos(ev);
+            offsetX = position.x;
+            offsetY = position.y;
         } else {
             offsetX = ev.offsetX;
             offsetY = ev.offsetY;
@@ -42,9 +43,17 @@ function onDrawing(ev) {
         }
     }
     let lineIdx = (offsetY < 300) ? 0 : 1;
-    onTypeText();
     setPoseX(lineIdx, offsetX);
     setPoseY(lineIdx, offsetY);
+    renderText();
+}
+
+function getTouchPos(event) {
+    var rect = gCanvas.getBoundingClientRect();
+    return {
+        x: event.touches[0].clientX - rect.left,
+        y: event.touches[0].clientY - rect.top
+    };
 }
 
 function onRenderCanvas(img) {
@@ -77,6 +86,7 @@ function renderText() {
 }
 
 function onTypeText() {
+    // debugger
     var memeData = getMemeData();
     gLineIdx = memeData.selectedLineIdx;
     var text = document.querySelector('.text-input').value;

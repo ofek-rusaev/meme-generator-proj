@@ -3,6 +3,7 @@
 var gKeywords = { 'happy': 12, 'funny': 1 }
 const KEY = 'Memes';
 var gMemes = getMemes();
+var gCurrFilterWord;
 
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['orange'] },
@@ -111,7 +112,18 @@ function getMemes() {
 }
 
 function imgsForDisplay() {
-    return gImgs;
+    if (!gCurrFilterWord) return gImgs;
+    var filteredImgs = gImgs.filter(img => {
+        if (img.keywords.includes(gCurrFilterWord)) {
+            return img;
+        }
+    });
+    return filteredImgs;
+}
+
+function updateSearchWord(text) {
+
+    gCurrFilterWord = text;
 }
 
 function getMemeData() {
