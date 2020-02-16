@@ -4,7 +4,6 @@ var gKeywords = { 'happy': 12, 'funny': 1 }
 const KEY = 'Memes';
 var gMemes = getMemes();
 var gCurrFilterWord;
-// var gKeys = setFilterIcons();
 
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['orange', 'funny'] },
@@ -20,9 +19,9 @@ var gImgs = [
     { id: 11, url: 'img/11.jpg', keywords: ['happy'] },
     { id: 12, url: 'img/12.jpg', keywords: ['happy'] },
     { id: 13, url: 'img/13.jpg', keywords: ['happy'] },
-    { id: 14, url: 'img/14.jpg', keywords: ['happy'] },
-    { id: 15, url: 'img/15.jpg', keywords: ['happy'] },
-    { id: 16, url: 'img/16.jpg', keywords: ['happy'] },
+    { id: 14, url: 'img/14.jpg', keywords: ['funny'] },
+    { id: 15, url: 'img/15.jpg', keywords: ['funny'] },
+    { id: 16, url: 'img/16.jpg', keywords: ['funny'] },
 ];
 
 var gMeme = {
@@ -143,7 +142,7 @@ function getImgsForDisplay() {
 //     console.log('in unique :', uniqueKeys);
 
 // }
-function setFilterIcons() {
+function setUniqueKeys() {
     var arr = []
     for (var i = 0; i < gImgs.length; i++) {
         arr.push(...gImgs[i].keywords)

@@ -9,7 +9,6 @@
 </head>
 
 <body onload="onInit()">
-    <!-- <div class="screen" onclick="onToggleMenu()"></div> -->
 
     <div class="main-nav">
         <nav class="main-nav-container  container  flex space-between align-center">
@@ -32,8 +31,6 @@
         </select>
         <input class="search-input" type="text" placeholder="Search..." data-trans="search" onkeyup="onSearch()" />
         <section class="search-btn"></section>
-        <!-- <button class="search-btn" onclick="onSearchKeys(this)">Cute</button>
-        <button class="search-btn" onclick="onSearchKeys(this)">Baby</button> -->
     </div>
     <div class="memes-container container"></div>
     <div class="images-container container"></div>
@@ -44,8 +41,11 @@
             <div class="share-container"></div>
 
             <canvas id="my-canvas" height="500" width="500" style="border: 1px solid rgb(105, 2, 2);"></canvas>
+
             <div class="editor">
+
                 <input class="text-input" type="text" value="" onkeyup="onTypeText()">
+
                 <div class="font-style flex column">
                     <div class="text-controller">
                         <button class="up" onclick="onLineMove(this)"><img class="up" src="img/icons/up.png"
@@ -57,6 +57,7 @@
                         <button class="add" onclick="onAddLine()"><img src="img/icons/add.png" alt=""></button>
                         <button class="clear" onclick="onClearCanvas()"><img src="img/icons/trash.png" alt=""></button>
                     </div>
+
                     <div class="font-editor-part1">
                         <button class="increase" onclick="onTxtSize(this)"><img src="img/icons/increase font - icon.png"
                                 alt=""></button>
@@ -68,30 +69,39 @@
                                 alt=""></button>
                         <button class="right" onclick="onTxtAlign(this)"><img src="img/icons/align-to-right.png"
                                 alt=""></button>
-                        <button class="color"><img src="img/icons/text stroke.png" alt=""><input type="color"
-                                onchange="onSetStrokeStyle(value)" id="color" /></button>
-                        <button class="color"><img src="img/icons/paint-board-and-brush.png" alt=""><input type="color"
-                                onchange="onSetFillStyle(value)" id="bg-color" /></button>
-                        <!-- <button class="user-pics upload"> -->
+
+                        <button class="color"><img src="img/icons/text stroke.png" alt=""><input type="color" id="color"
+                                onchange="onSetStrokeStyle(value)" /></button>
+
+
+                        <button class="color">
+                            <img src="img/icons/paint-board-and-brush.png" alt=""><input type="color" id="bg-color"
+                                onchange="onSetFillStyle(value)" /></button>
+
+
+                        <div class="font-editor-part2">
+                            <select class="fontOptions" onchange="onSetFont(value)" title="Choose Font"
+                                data-trans="font">
+                                <option data-font="monospace">Monospace</option>
+                                <option data-font="Times New Roman', Times, serif">Times New Roman</option>
+                                <option data-font="impact">Impact</option>
+                                <option data-font="Arial, Helvetica, sans-serif">Arial</option>
+                            </select>
+                        </div>
+
                         <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-                        <!-- Upload</button> -->
+
                         <form action="" method="POST" enctype="multipart/form-data" onsubmit="onShare(this, event)">
                             <input name="img" id="imgData" type="hidden" />
                             <button class="user-pics" type="submit" data-trans="publish">Publish</button>
                             <div class="share-container"></div>
                             <button class="share" hidden></button>
+                            <button>
+                                <a href="#" class="download-btn" onclick="onDownloadImg(this)" download="my-img.jpg"
+                                    data-trans="download">Download</a>
+                            </button>
+                            <button class="save" onclick="onSave()" data-trans="save">Save</button>
                         </form>
-                        <!-- <button id="emoji-button"><img src="images/Layer.png" alt="">😀🤪🤩🤡</button> -->
-                    </div>
-                    <div class="font-editor-part2">
-                        <select class="fontOptions" onchange="onSetFont(value)" title="Choose Font">
-                            <option> </option>
-                            <option data-font="monospace">Monospace</option>
-                            <option data-font="Times New Roman', Times, serif">Times New Roman</option>
-                            <option data-font="impact">Impact</option>
-                            <option data-font="Arial, Helvetica, sans-serif">Arial</option>
-                        </select>
-                        <button class="save" onclick="onSave()" data-trans="save">Save</button>
                     </div>
                 </div>
             </div>

@@ -27,9 +27,10 @@ a:hover {
     letter-spacing: 0.8px;
 }
 
-button {
+button  {
     border-radius: 15px;
     background-color: #fff;
+    height: 30px;
 }
 
 .user-pics {

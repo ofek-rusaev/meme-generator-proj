@@ -9,25 +9,22 @@ var gFontSize;
 var gTextAlign = 'left';
 var isEditing = false;
 
-var gStrokeColor;
-var gFillColor;
+// var gStrokeColor;
+// var gFillColor;
 
 var gIsDraging = false;
-var gIsStopDraging = true;
 
-var gPrevX;
-var gPrevY;
-
-
-function onNewEvent(ev) {
-    // console.log(ev)
-    gIsDraging = !gIsDraging;
-    gPrevX = undefined;
-    gPrevY = undefined;
+function onStartDrag(ev) {
+    gIsDraging = true;
 }
 
+function onEndDrag(ev) {
+    gIsDraging = false;
+}
+
+
 function onDrawing(ev) {
-    // console.log('ev: ', ev);
+    console.log('ev: ', ev);
     var offsetX;
     var offsetY;
     if (gIsDraging) {
@@ -84,15 +81,15 @@ function onClearCanvas() {
 
 
 function renderText() {
-    onRenderCanvas(gCurrImg); 
+    onRenderCanvas(gCurrImg);
     var lines = getLines();
     lines.forEach(line => {
         // gCtx.lineWidth = 2;
         gCtx.textAlign = line.align;
         gCtx.font = `${line.size}px ${gFontFamily}`;
-        gCtx.strokeStyle = gStrokeColor;
+        gCtx.strokeStyle = line.color;
         gCtx.strokeText(line.txt, line.positionX, line.positionY);
-        gCtx.fillStyle = gFillColor;
+        gCtx.fillStyle = line.fillColor;
         gCtx.fillText(line.txt, line.positionX, line.positionY);
     });
 }
@@ -110,6 +107,7 @@ function onTypeText() {
 
 function onAddLine() {
     addLine();
+    renderText();
 }
 
 function onLineSwitch() {
@@ -127,14 +125,14 @@ function onTxtSize(diff) {
 }
 
 function onSetStrokeStyle(color) {
-    gStrokeColor = color;
-    setStrokeStyle(gLineIdx, gStrokeColor);
+    // gStrokeColor = color;
+    setStrokeStyle(gLineIdx, color);
     renderText();
 }
 
 function onSetFillStyle(color) {
-    gFillColor = color;
-    setFillStyle(gLineIdx, gFillColor)
+    // gFillColor = color;
+    setFillStyle(gLineIdx, color)
     renderText();
 }
 

@@ -38,6 +38,14 @@ var gTrans = {
     footer: {
         en: '© 2020 - All Rights Reserved',
         he: '© 2020 - כל הזכויות שמורות '
+    },
+    download: {
+        en: 'Download',
+        he: 'הורדה'
+    },
+    font: {
+        en: 'Choose Font',
+        he: 'בחר גופן'
     }
 }
 
