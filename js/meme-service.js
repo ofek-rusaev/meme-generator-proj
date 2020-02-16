@@ -48,7 +48,6 @@ function addLine() {
         positionX: 60,
         positionY: 450
     }
-    console.log('adding line...');
     gMeme.lines.push(newLine);
 }
 

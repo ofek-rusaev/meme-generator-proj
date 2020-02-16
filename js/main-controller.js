@@ -5,13 +5,13 @@ function onInit() {
     gCtx = gCanvas.getContext('2d');
     onRenderImgs();
 
-    // gCanvas.addEventListener("mousedown", onStartDrag);
-    // gCanvas.addEventListener("mouseup", onEndDrag);
-    // gCanvas.addEventListener("mousemove", onDrawing);
+    gCanvas.addEventListener("mousedown", onNewEvent);
+    gCanvas.addEventListener("mouseup", onNewEvent);
+    gCanvas.addEventListener("mousemove", onDrag);
 
-    gCanvas.addEventListener("touchstart", onStartDrag);
-    gCanvas.addEventListener("touchend", onEndDrag);
-    gCanvas.addEventListener("touchmove", onDrawing);
+    gCanvas.addEventListener("touchstart", onNewEvent);
+    gCanvas.addEventListener("touchend", onNewEvent);
+    gCanvas.addEventListener("touchmove", onDrag);
     doTrans();
     onRenderSearchBtns();
 }

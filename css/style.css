@@ -116,8 +116,13 @@ button  {
 .editor {
     display: inline-block;
     text-align: center;
-    margin: 20px;
+    padding: 5px;
+    margin: auto;
     line-height: 30px;
+}
+
+.editor >* div, input {
+    margin-bottom: 5px;
 }
 
 .editor img {

@@ -4,30 +4,21 @@ var gCanvas;
 var gCtx;
 var gCurrImg;
 var gLineIdx;
-var gFontFamily;
+var gFontFamily = 'monospace';
 var gFontSize;
 var gTextAlign = 'left';
 var isEditing = false;
 
-// var gStrokeColor;
-// var gFillColor;
+var gIsDragging = false;
 
-var gIsDraging = false;
-
-function onStartDrag(ev) {
-    gIsDraging = true;
+function onNewEvent(ev) {
+    gIsDragging = !gIsDragging;
 }
 
-function onEndDrag(ev) {
-    gIsDraging = false;
-}
-
-
-function onDrawing(ev) {
-    console.log('ev: ', ev);
+function onDrag(ev) {
     var offsetX;
     var offsetY;
-    if (gIsDraging) {
+    if (gIsDragging) {
         if (ev.type === 'touchmove') {
             ev.preventDefault()
             var position = getTouchPos(ev);
@@ -37,13 +28,12 @@ function onDrawing(ev) {
             offsetX = ev.offsetX;
             offsetY = ev.offsetY;
         }
+        let lineIdx = (offsetY < 300) ? 0 : 1;
+        setPoseX(lineIdx, offsetX);
+        setPoseY(lineIdx, offsetY);
+        renderText();
     }
-    let lineIdx = (offsetY < 300) ? 0 : 1;
-    setPoseX(lineIdx, offsetX);
-    setPoseY(lineIdx, offsetY);
-    renderText();
 }
-
 
 // window.addEventListener('DOMContentLoaded', () => {
 //     const button = document.querySelector('#emoji-button');
@@ -84,7 +74,6 @@ function renderText() {
     onRenderCanvas(gCurrImg);
     var lines = getLines();
     lines.forEach(line => {
-        // gCtx.lineWidth = 2;
         gCtx.textAlign = line.align;
         gCtx.font = `${line.size}px ${gFontFamily}`;
         gCtx.strokeStyle = line.color;
@@ -95,7 +84,6 @@ function renderText() {
 }
 
 function onTypeText() {
-    // debugger
     var memeData = getMemeData();
     gLineIdx = memeData.selectedLineIdx;
     var text = document.querySelector('.text-input').value;
@@ -125,13 +113,11 @@ function onTxtSize(diff) {
 }
 
 function onSetStrokeStyle(color) {
-    // gStrokeColor = color;
     setStrokeStyle(gLineIdx, color);
     renderText();
 }
 
 function onSetFillStyle(color) {
-    // gFillColor = color;
     setFillStyle(gLineIdx, color)
     renderText();
 }
