@@ -132,9 +132,10 @@ function doUploadImg(elForm, onSuccess) {
 function onSave() {
     const imgData = gCanvas.toDataURL();
     saveMeme(imgData);
+    onRenderMemes();
     document.querySelector('.hide-canvas').hidden = true;
-    document.querySelector('.images-container').style.display = 'grid';
-    document.querySelector('.memes-container').style.display = 'none';
+    document.querySelector('.images-container').style.display = 'none';
+    document.querySelector('.memes-container').style.display = 'grid';
 }
 
 function onShowGallery() {

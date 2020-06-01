@@ -27,7 +27,7 @@ a:hover {
     letter-spacing: 0.8px;
 }
 
-button  {
+button, label  {
     border-radius: 15px;
     background-color: #fff;
     height: 30px;
@@ -130,13 +130,20 @@ button  {
     width: 20px;
 }
 
-button input {
+button input , label{
     border: none;
     height: 20px;
     width: 20px;
     background-color: #fff;
 }
 
+label {
+    padding: 1px 6px;
+    border-width: 2px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+}
 .btn {
     height: 25px;
     /* width: 20px; */

@@ -29,7 +29,7 @@
             <option value="en">English</option>
             <option value="he">עברית</option>
         </select>
-        <input class="search-input" type="text" placeholder="Search..." data-trans="search" onkeyup="onSearch()" />
+        <!-- <input class="search-input" type="text" placeholder="Search..." data-trans="search" onkeyup="onSearch()" /> -->
         <section class="search-btn"></section>
     </div>
     <div class="memes-container container"></div>
@@ -70,13 +70,12 @@
                         <button class="right" onclick="onTxtAlign(this)"><img src="img/icons/align-to-right.png"
                                 alt=""></button>
 
-                        <button class="color"><img src="img/icons/text stroke.png" alt=""><input type="color" id="color"
-                                onchange="onSetStrokeStyle(value)" /></button>
+                        <label for="color"><img src="img/icons/text stroke.png" alt=""></label>
+                        <input type="color" id="color" onchange="onSetStrokeStyle(value)" hidden />
 
 
-                        <button class="color">
-                            <img src="img/icons/paint-board-and-brush.png" alt=""><input type="color" id="bg-color"
-                                onchange="onSetFillStyle(value)" /></button>
+                        <label for="bg-color"><img src="img/icons/paint-board-and-brush.png" alt=""></label>
+                        <input type="color" id="bg-color" onchange="onSetFillStyle(value)" hidden />
 
 
                         <div class="font-editor-part2">
