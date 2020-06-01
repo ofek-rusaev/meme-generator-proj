@@ -141,14 +141,25 @@ function onSave() {
 function onShowGallery() {
     resetSearchWord();
     onRenderImgs();
+    document.querySelector('.about-section').style.display = 'none';
     document.querySelector('.images-container').style.display = 'grid';
     document.querySelector('.memes-container').style.display = 'none';
     document.querySelector('.hide-canvas').hidden = true;
 }
 
 function onShowMemes() {
+    document.querySelector('.about-section').style.display = 'none';
     document.querySelector('.images-container').style.display = 'none';
     document.querySelector('.memes-container').style.display = 'grid';
+    document.querySelector('.hide-canvas').hidden = true;
+    onRenderMemes();
+}
+
+function onShowAbout() {
+    document.querySelector('.search-bar').style.display = 'none';
+    document.querySelector('.images-container').style.display = 'none';
+    document.querySelector('.memes-container').style.display = 'none';
+    document.querySelector('.about-section').style.display = 'grid';
     document.querySelector('.hide-canvas').hidden = true;
     onRenderMemes();
 }

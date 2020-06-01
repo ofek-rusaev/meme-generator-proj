@@ -18,12 +18,15 @@
                 <li><a href="#" onclick="onShowGallery()" data-trans="gallery">Gallery</a></li>
                 <li><a href="#" onclick="onShowMemes()" data-trans="memes">Memes</a>
                 </li>
-                <li><a href="#" data-trans="about">About</a></li>
+                <li><a href="#" onclick="onShowAbout()" data-trans="about">About</a></li>
             </ul>
             <button class="menu-btn" onclick="onToggleMenu()">☰</button>
         </nav>
     </div>
 
+    <div class="about-section" style="display: none;">
+        This page was made for creation of funny memes. Enjoy (:
+    </div>
     <div class="search-bar container">
         <select onchange="onSetLang(this.value)">
             <option value="en">English</option>
