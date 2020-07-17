@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+}
+
 body.rtl {
     direction: rtl;
 }
@@ -27,7 +31,7 @@ a:hover {
     letter-spacing: 0.8px;
 }
 
-button, label  {
+button, label {
     border-radius: 15px;
     background-color: #fff;
     height: 30px;
@@ -121,7 +125,7 @@ button, label  {
     line-height: 30px;
 }
 
-.editor >* div, input {
+.editor>* div, input {
     margin-bottom: 5px;
 }
 
@@ -130,7 +134,7 @@ button, label  {
     width: 20px;
 }
 
-button input , label{
+button input, label {
     border: none;
     height: 20px;
     width: 20px;
@@ -144,6 +148,7 @@ label {
     border-style: outset;
     border-color: buttonface;
 }
+
 .btn {
     height: 25px;
     /* width: 20px; */
